@@ -8,7 +8,7 @@ body {
   align-items: center;
   min-height: 100vh;
   color: #fff;
-  overflow: hidden; /* Ensure no scrollbars */
+  /* overflow: hidden; Ensure no scrollbars */
 }
 
 .container {

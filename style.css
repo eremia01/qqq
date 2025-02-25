@@ -1,15 +1,14 @@
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  /* Changed background to poker table green */
-  background: linear-gradient(to right, #006400, #008000); /* Dark to medium green */
+  background: #fff;
   margin: 0;
   padding: 0;
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  color: #fff;
-  overflow-x: hidden; /* Prevent horizontal scrolling */
+  color: #000;
+  overflow-x: hidden;
 }
 
 .container {
@@ -31,56 +30,62 @@ header {
 header h1 {
   font-size: 3em;
   margin-bottom: 10px;
-  color: #fff;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  color: #000;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
 }
 
 header p {
     font-size: 1.3em;
-    color: #ddd;
+    color: #333;
     margin-bottom: 20px;
 }
 
 .hero {
   margin-bottom: 30px;
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.hero.active {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .glassmorphism {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.3);
   border-radius: 16px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
   padding: 40px;
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, filter 0.3s ease;
+  color: #000;
+  text-align: left;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  will-change: filter;
 }
 
-.glassmorphism:hover {
-    transform: translateY(-5px);
-}
-
-.hero h2 {
-  font-size: 2.5em;
-  margin-bottom: 20px;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+.glassmorphism.unblur {
+    filter: blur(0px);
 }
 
 .telegram-button {
-  display: inline-block;
-  padding: 14px 28px;
-  background-color: #ff4136; /* Red */
-  color: white;
-  text-decoration: none;
-  border-radius: 10px;
-  font-weight: bold;
-  transition: background-color 0.3s ease, transform 0.3s ease;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    display: inline-block;
+    padding: 14px 28px;
+    background-color: #ff4136;
+    color: white;
+    text-decoration: none;
+    border-radius: 10px;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
 }
 
 .telegram-button:hover {
-  background-color: #d9362d; /* Darker Red */
-  transform: scale(1.05);
+    background-color: #d9362d;
+    transform: scale(1.05);
 }
 
 .features {
@@ -95,37 +100,47 @@ header p {
   min-width: 280px;
   padding: 30px;
   box-sizing: border-box;
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.2);
   border-radius: 16px;
   margin-bottom: 20px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, filter 0.3s ease;
+  color: #000;
+  text-align: left;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  will-change: filter;
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
-.feature:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+.feature.active {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .feature h3 {
   margin-bottom: 15px;
-  font-size: 1.4em;
+  font-size: 1.7em;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  color: #000;
 }
 
 .feature h3 .emoji {
-  font-size: 2.5em; 
-  vertical-align: middle; 
-  margin-right: 5px; 
+  font-size: 2.5em;
+  vertical-align: middle;
+  margin-right: 10px;
 }
 
 footer {
   padding: 20px 0;
   font-size: 0.9em;
-  color: #ddd;
+  color: #666;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
 }
 
-/* Media Queries for Responsiveness */
 @media (max-width: 768px) {
   .container {
     width: 95%;
@@ -142,11 +157,10 @@ footer {
   }
 }
 
-/* ClubGG Button Style */
 .clubgg-button {
     display: inline-block;
     padding: 14px 28px;
-    background-color: #ff4136; /* Red */
+    background-color: #ff4136;
     color: white;
     text-decoration: none;
     border-radius: 10px;
@@ -157,31 +171,46 @@ footer {
 }
 
 .clubgg-button:hover {
-    background-color: #d9362d; /* Darker Red */
+    background-color: #d9362d;
     transform: scale(1.05);
 }
 
-/* Platform Section Style */
 .platform {
     margin-bottom: 40px;
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.platform.active {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .platform .glassmorphism {
     padding: 30px;
+    text-align: left;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    will-change: filter;
+}
+
+.platform .glassmorphism.unblur {
+    filter: blur(0px);
 }
 
 .platform h3 {
     margin-bottom: 15px;
     font-size: 1.7em;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+    color: #000;
 }
 
-/* Dynamic Objects (Circles) */
 .dynamic-circle {
     position: absolute;
     border-radius: 50%;
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.2);
     animation: float 6s infinite linear;
+    filter: blur(2px);
 }
 
 .dynamic-circle:nth-child(1) {
@@ -208,6 +237,22 @@ footer {
     animation-delay: 4s;
 }
 
+.dynamic-circle:nth-child(4) {
+    width: 50px;
+    height: 50px;
+    top: 50%;
+    left: 80%;
+    animation-delay: 1s;
+}
+
+.dynamic-circle:nth-child(5) {
+    width: 70px;
+    height: 70px;
+    top: 85%;
+    left: 15%;
+    animation-delay: 3s;
+}
+
 @keyframes float {
     0% {
         transform: translateY(0);
@@ -220,12 +265,11 @@ footer {
     }
 }
 
-/* Dynamic Emoji */
 .dynamic-emoji {
     position: absolute;
-    font-size: 5em;
-    opacity: 0.3;
-    filter: blur(4px);
+    font-size: 3em;
+    opacity: 0.4;
+    filter: blur(1px);
     animation: emojiFloat 8s infinite alternate;
 }
 
@@ -238,22 +282,36 @@ footer {
 .dynamic-emoji:nth-child(2) {
     top: 45%;
     left: 70%;
-    font-size: 5.5em;
+    font-size: 3.5em;
     animation-delay: 3s;
 }
 
 .dynamic-emoji:nth-child(3) {
     top: 65%;
     left: 30%;
-    font-size: 6em;
+    font-size: 4em;
     animation-delay: 5s;
 }
 
 .dynamic-emoji:nth-child(4) {
     top: 80%;
     left: 90%;
-    font-size: 4.5em;
+    font-size: 2.5em;
     animation-delay: 2s;
+}
+
+.dynamic-emoji:nth-child(5) {
+    top: 15%;
+    left: 50%;
+    font-size: 3em;
+    animation-delay: 4s;
+}
+
+.dynamic-emoji:nth-child(6) {
+    top: 75%;
+    left: 5%;
+    font-size: 3.5em;
+    animation-delay: 6s;
 }
 
 @keyframes emojiFloat {
@@ -261,6 +319,14 @@ footer {
         transform: translate(0, 0);
     }
     100% {
-        transform: translate(30px, -50px);
+        transform: translate(20px, -30px);
     }
+}
+
+.highlight-red {
+    color: #ff4136;
+}
+
+.highlight-green {
+    color: #2ecc71;
 }
